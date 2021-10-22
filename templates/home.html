@@ -11,12 +11,13 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body>
+    
     <div class="wrapper">
-        <div style="background-image: url('{{data.img}}');" class="profile">
+        <div style="background-image: url('{{userdata.img.url}}');" class="profile">
             
             <div class="overlay">
                 <div class="about d-flex flex-column">
-                    <h4>{{data.name}}</h4> <span>{{data.career}}</span>
+                    <h4>{{userdata.name}}</h4> <span>{{userdata.career}}</span>
                 </div>
                 <ul class="social-icons">
                     <li><i class="fa fa-facebook"></i></li>
@@ -29,6 +30,7 @@
             <div class="d-flex justify-content-around"><a  href="{% url 'login'%}" class="btn btn-info ">LogOut</a></div>
             
         </div>
+        
         
         
     </div>
