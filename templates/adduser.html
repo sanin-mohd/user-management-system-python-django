@@ -38,7 +38,7 @@
                    
                 </div>
                 <div class="col-lg-12 login-title" style="color:#34dbeb">
-                    SIGNUP
+                    ADD NEW USER
                 </div>
                 
 
@@ -50,7 +50,7 @@
                             
                             {% endfor %}
                         </div>
-                        <form id="signup-form" method="post" action="signup" enctype="multipart/form-data" >
+                        <form id="signup-form" method="post" action="adduser" enctype="multipart/form-data" >
                             {% csrf_token %}
                             <div class="form-group">
                                 <label class="form-control-label">USERNAME</label>
@@ -83,7 +83,7 @@
                                 </div>
                                 
                                 <div class="col-lg-6 login-btm login-button">
-                                    <button type="submit" class="btn btn-outline-primary">SIGN UP</button>
+                                    <button type="submit" class="btn btn-outline-primary">ADD</button>
                                 </div>
                             </div>
                         </form>

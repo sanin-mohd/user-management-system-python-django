@@ -5,27 +5,33 @@
   	<title>CONTROL PANEL</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-	<link href='https://fonts.googleapis.com/css?family=Roboto:400,100,300,700' rel='stylesheet' type='text/css'>
-
-	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 	
+	<link href='https://fonts.googleapis.com/css?family=Roboto:400,100,300,700' rel='stylesheet' type='text/css'>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css">
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 	<link rel="stylesheet" href="{% static 'css/adminpanel.css' %}">
-		
+	<script src="{% static 'js/jquery.min.js' %}"></script>
 
 	</head>
-	<body>
+	<body style="background-color: rgb(255, 255, 255);">
+		<link rel="stylesheet" href="https://cdn.datatables.net/1.10.2/css/jquery.dataTables.min.css">
+		<script type="text/javascript" src="https://cdn.datatables.net/1.10.2/js/jquery.dataTables.min.js"></script>
+
 	<section class="ftco-section">
 		<div class="container">
+			<div class="" style="float: right;"><a href="adduser"><button class="btn btn-primary " style="font-size: 15px;">ADD USER</button></a></div>
 			<div class="row justify-content-center">
 				<div class="col-md-6 text-center mb-5">
-					<h2 class="heading-section">ADMIN CONTROL PANEL</h2>
+					<h2 class="heading-section" style="color:#322e2e;font-weight: bold; ">ADMIN CONTROL PANEL</h2>
 				</div>
 			</div>
 			<div class="row">
+				
 				<div class="col-md-12">
 					<div class="table-wrap">
-						<table class="table table-bordered table-dark table-hover">
+						<table id="example"  class="table table-bordered  table-dark ">
 						  <thead>
 						    <tr style="text-align: center;">
 						      <th>#</th>
@@ -34,11 +40,13 @@
 						      <th>CAREER</th>
 							  <th>PHOTO</th>
 							  <th>STATUS</th>
+							  <th>DELETE</th>
+							  
 						    </tr>
 						  </thead>
 						  <tbody>
 							  {% for userdata in dbtable%}
-						    <tr style="text-align: center;">
+						    <tr style="text-align: center;color: black;">
 						      <th scope="row">{{ forloop.counter }}</th>
 						      <td>{{userdata.name}}</td>
 						      <td>{{userdata.email}}</td>
@@ -52,6 +60,7 @@
 								  </label>
 								  ACTIVE
 							</td>
+							<td><button class=" btn btn-danger"  style="font-size: 13px;">DELETE</button></td>
 							
 						    </tr>
 							{%endfor%}
@@ -63,8 +72,13 @@
 			</div>
 		</div>
 	</section>
-
-	<script src="{% static 'js/jquery.min.js' %}"></script>
+	<script>
+		$(document).ready(function() {
+			$('#example').DataTable();
+			} );
+	</script>
+	
+	
   <script src="{% static 'js/popper.js' %}"></script>
   <script src="{% static 'js/bootstrap.min.js' %}"></script>
   <script src="{% static 'js/main.js' %}"></script>

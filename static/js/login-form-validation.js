@@ -1,17 +1,16 @@
+
 $(document).ready(function () {
 
-    $("#login-form").validate({ // initialize the plugin
+    $("#loginform").validate({ // initialize the plugin
         rules: {
             username: {
-                required: true,
-                type:email
-                
-            },
+                required: true },
             password: {
                 required: true,
-                minlength: 5
+                minlength: 4
             }
-        }
+        },
+        
     });
 
 });

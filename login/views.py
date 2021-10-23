@@ -59,11 +59,11 @@ def signup(request):
         cpassword=request.POST['cpassword']
         userdata.career=request.POST['career']
         userdata.img=request.FILES['img']
-        if(User.objects.filter(username=userdata.name).exists()):
+        if(profile.objects.filter(username=userdata.name).exists()):
             messages.info(request,"An Error Occurred: Username is taken")
             print("Username is taken")
             return redirect('signup')
-        elif(User.objects.filter(email=userdata.email).exists()):
+        elif(profile.objects.filter(email=userdata.email).exists()):
             messages.info(request,"An Error Occurred: Email ID is taken")
             print("Email ID is taken")
             return redirect('signup')

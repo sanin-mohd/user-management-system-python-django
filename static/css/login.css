@@ -34,7 +34,9 @@ body {
     margin-top: 25px;
     text-align: left;
 }
-
+input{
+    box-sizing: border-box;
+}
 input[type=text] {
     background-color: #1A2226;
     border: none;
@@ -98,7 +100,7 @@ label {
 }
 
 .form-control-label {
-    font-size: 10px;
+    font-size: 14px;
     color: #6C6C6C;
     font-weight: bold;
     letter-spacing: 1px;
@@ -137,3 +139,21 @@ label {
 .loginbttm {
     padding: 0px;
 }
+/* .container form div{
+    position: relative;
+}
+.container form div label{
+    position: absolute;
+    top: 10px ;  
+    pointer-events: none;
+    left:0;
+    transition: .5s;
+}
+.container form div input:focus ~label ,
+.container form div input:valid ~label{
+    left: 0;
+    top:-20px;
+    color:#34dbeb;
+    font-size: 10px;
+    font-weight: bold;
+} */

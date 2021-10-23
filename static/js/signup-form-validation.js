@@ -1,9 +1,10 @@
+
 $(document).ready(function () {
 
     $("#signup-form").validate({ // initialize the plugin
         rules: {
             username: {
-                required: true,
+                required: true
                 
                 
             },
@@ -13,11 +14,15 @@ $(document).ready(function () {
                 
             },
             career: {
-                required: true,
+                required: true
                 
                 
             },
             password: {
+                required: true,
+                minlength: 5
+            },
+            cpassword: {
                 required: true,
                 minlength: 5
             }
