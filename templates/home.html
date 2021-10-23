@@ -17,7 +17,7 @@
             
             <div class="overlay">
                 <div class="about d-flex flex-column">
-                    <h4>{{userdata.name}}</h4> <span>{{userdata.career}}</span>
+                    <h4>{{userdata.name}}</h4> <span>{{userdata.career}}</span><span>{{userdata.email}}</span>
                 </div>
                 <ul class="social-icons">
                     <li><i class="fa fa-facebook"></i></li>
@@ -27,8 +27,11 @@
                 </ul>
             </div>
             <br>
-            <div class="d-flex justify-content-around"><a  href="{% url 'login'%}" class="btn btn-info ">LogOut</a></div>
-            
+            {% if user.is_authenticated %}
+            <div class="d-flex justify-content-around"><a  href="{% url 'logout'%}" class="btn btn-info ">LogOut</a></div>
+            {% else %}
+            <div>Hi</div>
+            {% endif%}
         </div>
         
         

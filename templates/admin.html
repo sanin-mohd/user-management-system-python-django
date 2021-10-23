@@ -16,7 +16,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
 
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet"> 
-    <title>LOGIN PAGE</title>
+    <title>ADMIN</title>
     <link rel="stylesheet" href="{%static 'css/login.css' %}">
     
 </head>
@@ -30,7 +30,7 @@
                     <i class="fa fa-key" aria-hidden="true"></i>
                 </div>
                 <div class="col-lg-12 login-title">
-                    LOGIN
+                    ADMIN PANEL LOGIN
                 </div>
 
                 <div class="col-lg-12 login-form">
@@ -41,7 +41,7 @@
                             
                             {% endfor %}
                         </div>
-                        <form id="login-form" method="post" action="home" >
+                        <form id="login-form" method="post" action="" >
                             {% csrf_token %}
                             <div class="form-group">
                                 <label class="form-control-label">USERNAME</label>
@@ -51,18 +51,7 @@
                                 <label class="form-control-label">PASSWORD</label>
                                 <input name="password" type="password" class="form-control" i>
                             </div>
-                            <div class="col-lg-12 loginbttm">
-                                <a style="float: left;" href="signup">Sign Up?</a><a style="float: right;" href="adminpanel">Admin Login?</a>
-
-                                <br>
-                                <br>
-                                
-                                <div class="col-lg-6 login-btm login-text">
-                                    <!-- Error Message -->
-                                </div>
-                                
-                                
-                            </div>
+                            
                             <br>
                             <br>
                             <div class="col-lg-12 loginbttm">

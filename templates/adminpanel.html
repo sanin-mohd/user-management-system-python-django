@@ -1,0 +1,74 @@
+{%load static%}
+<!doctype html>
+<html lang="en">
+  <head>
+  	<title>CONTROL PANEL</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+	<link href='https://fonts.googleapis.com/css?family=Roboto:400,100,300,700' rel='stylesheet' type='text/css'>
+
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+	
+	<link rel="stylesheet" href="{% static 'css/adminpanel.css' %}">
+		
+
+	</head>
+	<body>
+	<section class="ftco-section">
+		<div class="container">
+			<div class="row justify-content-center">
+				<div class="col-md-6 text-center mb-5">
+					<h2 class="heading-section">ADMIN CONTROL PANEL</h2>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<div class="table-wrap">
+						<table class="table table-bordered table-dark table-hover">
+						  <thead>
+						    <tr style="text-align: center;">
+						      <th>#</th>
+						      <th>USERNAME</th>
+						      <th>EMAIL ID</th>
+						      <th>CAREER</th>
+							  <th>PHOTO</th>
+							  <th>STATUS</th>
+						    </tr>
+						  </thead>
+						  <tbody>
+							  {% for userdata in dbtable%}
+						    <tr style="text-align: center;">
+						      <th scope="row">{{ forloop.counter }}</th>
+						      <td>{{userdata.name}}</td>
+						      <td>{{userdata.email}}</td>
+						      <td>{{userdata.career}}</td>
+							  <td><img style="height: 60px; width: 54px;" src="{{userdata.img.url}}" alt=""></td>
+							  <td><!-- Material checked -->
+								BLOCKED
+								<label class="switch">
+									<input type="checkbox" checked>
+									<span class="slider round"></span>
+								  </label>
+								  ACTIVE
+							</td>
+							
+						    </tr>
+							{%endfor%}
+						    
+						  </tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<script src="{% static 'js/jquery.min.js' %}"></script>
+  <script src="{% static 'js/popper.js' %}"></script>
+  <script src="{% static 'js/bootstrap.min.js' %}"></script>
+  <script src="{% static 'js/main.js' %}"></script>
+
+	</body>
+</html>
+

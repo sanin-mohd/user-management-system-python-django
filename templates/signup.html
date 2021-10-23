@@ -19,10 +19,13 @@
     <title>SIGNUP PAGE</title>
     <link rel="stylesheet" href="{%static 'css/login.css' %}">
     
+    
 </head>
 <body>
     
+    
     <div class="container">
+        
         <div class="row">
             <div class="col-lg-3 col-md-2"></div>
             <div class="col-lg-6 col-md-8 login-box">
@@ -32,10 +35,17 @@
                 <div class="col-lg-12 login-title">
                     SIGNUP
                 </div>
+                
 
                 <div class="col-lg-12 login-form">
                     <div class="col-lg-12 login-form">
-                        <form id="signup-form" method="post" action="home" >
+                        <div>
+                            {% for message in messages %}
+                            <h6 style="color: rgb(212, 0, 0);text-align: center;">{{message}}</h3>
+                            
+                            {% endfor %}
+                        </div>
+                        <form id="signup-form" method="post" action="signup" enctype="multipart/form-data" >
                             {% csrf_token %}
                             <div class="form-group">
                                 <label class="form-control-label">USERNAME</label>
@@ -50,8 +60,16 @@
                                 <input name="career" type="text" class="form-control">
                             </div>
                             <div class="form-group">
+                                <label class="form-control-label">IMAGE</label>
+                                <input  name="img" type="file"  class="form-control" i>
+                            </div>
+                            <div class="form-group">
                                 <label class="form-control-label">PASSWORD</label>
                                 <input name="password" type="password" class="form-control" i>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-control-label">CONFIRM PASSWORD</label>
+                                <input name="cpassword" type="password" class="form-control" i>
                             </div>
 
                             <div class="col-lg-12 loginbttm">
@@ -70,7 +88,7 @@
             </div>
         </div>
 
-
+        
 
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <script src="{% static 'js/signup-form-validation.js' %}"></script>
