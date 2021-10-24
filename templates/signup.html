@@ -19,7 +19,7 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.3/dist/jquery.validate.js"></script>
      
-  <script src="{% static 'js/signup-form-validation.js' %}"></script>
+  <script src="{% static 'js/validation.js' %}"></script>
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet"> 
     <title>SIGNUP PAGE</title>
     <link rel="stylesheet" href="{%static 'css/login.css' %}">
@@ -50,7 +50,7 @@
                             
                             {% endfor %}
                         </div>
-                        <form id="signup-form" method="post" action="signup" enctype="multipart/form-data" >
+                        <form id="form" method="post" action="signup" enctype="multipart/form-data" >
                             {% csrf_token %}
                             <div class="form-group">
                                 <label class="form-control-label">USERNAME</label>

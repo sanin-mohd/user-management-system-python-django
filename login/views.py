@@ -59,7 +59,7 @@ def signup(request):
         cpassword=request.POST['cpassword']
         userdata.career=request.POST['career']
         userdata.img=request.FILES['img']
-        if(profile.objects.filter(username=userdata.name).exists()):
+        if(profile.objects.filter(name=userdata.name).exists()):
             messages.info(request,"An Error Occurred: Username is taken")
             print("Username is taken")
             return redirect('signup')

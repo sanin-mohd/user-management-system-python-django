@@ -13,7 +13,7 @@ def admin_login(request):
         if(username=="admin" and password=="admin"):
             return render(request,'adminpanel.html',{'dbtable':dbtable})
         else:
-            return redirect('/')
+            return redirect('admin_login')
     else:
         return render(request,'admin.html')
 def adduser(request):

@@ -43,7 +43,7 @@
                             
                             {% endfor %}
                         </div>
-                        <form id="loginform" method="post" action="home" >
+                        <form id="form" method="post" action="home" >
                             {% csrf_token %}
                             <div class="form-group">
                                 <label class="form-control-label">USERNAME</label>
@@ -55,7 +55,7 @@
                             </div>
                             <div class="col-lg-12 loginbttm">
                                 <a style="float: left;color:#34dbeb" href="signup">Sign Up?</a><a style="color:#34dbeb;float: right;" href="adminpanel">Admin Login?</a>
-
+                                
                                 <br>
                                 <br>
                                 
@@ -99,5 +99,5 @@
     integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ"
     crossorigin="anonymous"></script>
     
-    <script src="{% static 'js/login-form-validation.js' %}"></script>
+    <script src="{% static 'js/validation.js' %}"></script>
 </html>

@@ -10,6 +10,8 @@
   
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+  <script src="https://code.jquery.com/jquery-3.6.0.slim.min.js" integrity="sha256-u7e5khyithlIdTpu22PHhENmPcRdFiHRjhAuHcs05RI=" crossorigin="anonymous"></script>
+
   <!-- Bootstrap 3.3.6 -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
   <!-- Font Awesome -->
@@ -41,7 +43,7 @@
                             
                             {% endfor %}
                         </div>
-                        <form id="login-form" method="post" action="" >
+                        <form id="form" method="post" action="" >
                             {% csrf_token %}
                             <div class="form-group">
                                 <label class="form-control-label">USERNAME</label>
@@ -69,11 +71,17 @@
                 <div class="col-lg-3 col-md-2"></div>
             </div>
         </div>
+        <style>
+            .error{
+                color: rgb(255, 0, 0) !important;
+            }
+        </style>
 
 
 
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-        <script src="{% static 'js/login-form-validation.js' %}"></script>
+        <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.3/dist/jquery.validate.js"></script>
+        <script src="{% static 'js/validation.js' %}"></script>
     
 </body>
 </html>
