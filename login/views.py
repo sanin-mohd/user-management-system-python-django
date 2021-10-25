@@ -7,6 +7,8 @@ from django.http import HttpResponse
 from django.utils.functional import empty
 from . models import profile
 from django.contrib.auth.models import User , auth
+from django.contrib.auth.decorators import login_required
+
 
 dbtable=profile.objects.all()
 # Create your views here.
@@ -24,9 +26,8 @@ dbtable=profile.objects.all()
 #         return render(request,'login.html')
 
 def login_page(request):
-    return render(request,'login.html')
-def home(request):
-
+    if request.user.is_authenticated:
+        return redirect('home')
     if request.method=="POST":
         
         username=request.POST["username"]
@@ -34,22 +35,41 @@ def home(request):
         user=auth.authenticate(username=username,password=password)
         if user is not None :
             auth.login(request,user)
-            for userdata in dbtable:
+            return redirect('home')
+        
+            
+            # for userdata in dbtable:
                 
-                if userdata.name==username :
-                    if not userdata.status:
-                        messages.info(request,"You are blocked by admin")
-                        return redirect('/')
-                    return render(request,'home.html',{'userdata':userdata})
+            #     if userdata.name==username :
+            #         if not userdata.status:
+            #             messages.info(request,"You are blocked by admin")
+            #             return redirect('/')
+            #         else:
+            #             auth.login(request,user)
+            #             return render(request,'home.html',{'userdata':userdata})
                
 
         else:
             messages.info(request,"Incorrect username or password")
             return redirect('/')
+    return render(request,'login.html')
+@login_required(login_url='login')
+def home(request):
+    if request.user.is_authenticated:
+        username=request.user
+        print(username)
         
-        
+        for userdata in dbtable:
+            if userdata.name==str(username):
+                return render(request,'home.html',{'userdata':userdata})
     else:
-        return redirect('/')
+        return redirect('login')           
+        
+    
+
+
+    
+    
 def signup(request):
     if request.method=='POST':
         userdata=profile()
@@ -71,8 +91,10 @@ def signup(request):
         if(cpassword == userdata.password):
             userdata.status=1
             userdata.save()
-            inbuilt_user_tb=User.objects.create_user(username=userdata.name,password=userdata.password,email=userdata.email,is_active=1,is_staff=0)
-            inbuilt_user_tb.save()
+            user=User.objects.create_user(username=userdata.name,password=userdata.password,email=userdata.email,is_active=1,is_staff=0)
+            user.save()
+            auth.login(request,user)
+            
             print("user created")
         else:
             messages.info(request,"An Error Occurred: Password not matching")
@@ -85,4 +107,4 @@ def signup(request):
         return render(request,'signup.html')
 def logout(request):
     auth.logout(request)
-    return redirect('/')
+    return redirect('login')
