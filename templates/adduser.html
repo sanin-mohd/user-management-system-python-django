@@ -50,7 +50,7 @@
                             
                             {% endfor %}
                         </div>
-                        <form id="form" method="post" action="adduser" enctype="multipart/form-data" >
+                        <form id="form" method="post" action="{% url 'adduser' %}" enctype="multipart/form-data" >
                             {% csrf_token %}
                             <div class="form-group">
                                 <label class="form-control-label">USERNAME</label>

@@ -15,7 +15,7 @@ $(document).ready(function () {
             },
             email: {
                 required: true,
-                type:"email"
+                email:true
                 
             },
             career: {

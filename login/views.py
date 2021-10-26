@@ -68,10 +68,8 @@ def home(request):
     if request.user.is_authenticated:
         username=request.user
         print(username)
-        
-        for userdata in dbtable:
-            if userdata.name==str(username):
-                return render(request,'home.html',{'userdata':userdata})
+        userdata=profile.objects.get(name=username)
+        return render(request,'home.html',{'userdata':userdata})
     else:
         return redirect('login')           
         

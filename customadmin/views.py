@@ -26,12 +26,13 @@ def admin_home(request):
         return render(request,'adminpanel.html',{'dbtable':dbtable})
     else:
         return redirect('admin_login')
+
 def admin_logout(request):
     if request.session.has_key('admin'):
         del request.session['admin']
         request.session.modified = True
         print("admin session deleted")
-        return redirect('admin_login')
+        return redirect('admin_home')
 
 def adduser(request):
     if request.method=='POST':
