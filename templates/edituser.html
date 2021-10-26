@@ -1,0 +1,107 @@
+{% load static%}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  
+  <!-- Tell the browser to be responsive to screen width -->
+  <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+  <script src="https://code.jquery.com/jquery-3.6.0.slim.min.js" integrity="sha256-u7e5khyithlIdTpu22PHhENmPcRdFiHRjhAuHcs05RI=" crossorigin="anonymous"></script>
+
+  <!-- Bootstrap 3.3.6 -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.3/dist/jquery.validate.js"></script>
+     
+  <script src="{% static 'js/validation.js' %}"></script>
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet"> 
+    <title>SIGNUP PAGE</title>
+    <link rel="stylesheet" href="{%static 'css/login.css' %}">
+    
+    
+</head>
+<body>
+    
+    
+    <div class="container">
+        
+        <div class="row">
+            <div class="col-lg-3 col-md-2"></div>
+            <div class="col-lg-6 col-md-8 login-box">
+                <div style="height: 50px;;" class="col-lg-12 ">
+                   
+                </div>
+                <div class="col-lg-12 login-title" style="color:#34dbeb">
+                    EDIT USER
+                </div>
+                
+
+                <div class="col-lg-12 login-form">
+                    <div class="col-lg-12 login-form">
+                        <div>
+                            {% for message in messages %}
+                            <h6 style="color: rgb(212, 0, 0);text-align: center;">{{message}}</h3>
+                            
+                            {% endfor %}
+                        </div>
+                        <form id="form" method="post" action="{% url 'edit_user' userdata.id %}" enctype="multipart/form-data" >
+                            {% csrf_token %}
+                            <div class="form-group">
+                                <label class="form-control-label">USERNAME</label>
+                                <input name="username" value="{{userdata.name}}" type="text" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-control-label">EMAIL ID</label>
+                                <input name="email" value="{{userdata.email}}" type="email" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-control-label">CAREER</label>
+                                <input name="career" value="{{userdata.career}}" type="text" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-control-label">IMAGE</label>
+                                <input  name="img" value="{{userdata.img.url}}" type="file"  class="form-control" i>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-control-label">NEW PASSWORD</label>
+                                <input name="password"  type="password" class="form-control" i>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-control-label">CONFIRM PASSWORD</label>
+                                <input name="cpassword" type="password" class="form-control" i>
+                            </div>
+
+                            <div class="col-lg-12 loginbttm">
+                                <div class="col-lg-6 login-btm login-text">
+                                    <!-- Error Message -->
+                                </div>
+                                
+                                <div class="col-lg-6 login-btm login-button">
+                                    <button type="submit" class="btn btn-outline-primary">UPDATE USER</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-2"></div>
+            </div>
+        </div>
+        <style>
+            .error{
+                color: rgb(255, 0, 0) !important;
+            }
+        </style>
+
+        
+
+      
+        
+    
+</body>
+</html>

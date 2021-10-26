@@ -26,16 +26,26 @@ dbtable=profile.objects.all()
 #         return render(request,'login.html')
 
 def login_page(request):
+    
     if request.user.is_authenticated:
         return redirect('home')
     if request.method=="POST":
         
         username=request.POST["username"]
         password=request.POST["password"]
+        dbtable=profile.objects.all()
         user=auth.authenticate(username=username,password=password)
-        if user is not None :
-            auth.login(request,user)
-            return redirect('home')
+        if user is not None:
+            userdata=profile.objects.get(name=username)
+            if userdata.status:
+                auth.login(request,user)
+                print(user.username)
+                return redirect('home')
+            else:
+                messages.info(request,"You are blocked by admin")
+                return redirect('/')
+
+            
         
             
             # for userdata in dbtable:
@@ -79,11 +89,11 @@ def signup(request):
         cpassword=request.POST['cpassword']
         userdata.career=request.POST['career']
         userdata.img=request.FILES['img']
-        if(profile.objects.filter(name=userdata.name).exists()):
+        if(profile.objects.filter(name=userdata.name).exists() or User.objects.filter(username=userdata.name).exists()):
             messages.info(request,"An Error Occurred: Username is taken")
             print("Username is taken")
             return redirect('signup')
-        elif(profile.objects.filter(email=userdata.email).exists()):
+        elif(profile.objects.filter(email=userdata.email).exists() or User.objects.filter(username=userdata.name).exists()):
             messages.info(request,"An Error Occurred: Email ID is taken")
             print("Email ID is taken")
             return redirect('signup')
@@ -96,6 +106,7 @@ def signup(request):
             auth.login(request,user)
             
             print("user created")
+            return redirect('home')
         else:
             messages.info(request,"An Error Occurred: Password not matching")
             print("Password not matching")
@@ -108,3 +119,4 @@ def signup(request):
 def logout(request):
     auth.logout(request)
     return redirect('login')
+    
