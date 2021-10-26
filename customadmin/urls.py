@@ -9,6 +9,8 @@ urlpatterns = [
     path('adduser',views.adduser,name='adduser'),
     path('edit_user/<int:pk>/',views.edit_user,name='edit_user'),
     path('delete_user/<int:pk>/',views.delete_user,name='delete_user'),
+    path('block_user/<int:pk>',views.block_user,name='block_user'),
+    path('unblock_user/<int:pk>',views.unblock_user,name='unblock_user'),
     
     # /<str:username>
     

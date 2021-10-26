@@ -123,9 +123,15 @@ def block_user(request,pk):
     userdata=profile.objects.get(id=pk)
     if userdata.status:
         userdata.status=0
+        userdata.save()
         print("User status : Inactive")
-    else:
+        
+    return redirect('admin_home')
+def unblock_user(request,pk):
+    userdata=profile.objects.get(id=pk)
+    if not userdata.status:
         userdata.status=1
+        userdata.save()
         print("User status : Active")
     return redirect('admin_home')
 

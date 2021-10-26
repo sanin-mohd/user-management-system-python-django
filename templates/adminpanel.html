@@ -33,15 +33,15 @@
 				
 				<div class="col-md-12">
 					<div class="table-wrap">
-						<table id="example"  class="table table-bordered  table-dark " style="align-content: center;">
+						<table id="example"  class="table table-bordered  table-dark " style="align-content: center;align-items: center;justify-items: center; ">
 						  <thead>
-						    <tr style="text-align: center;">
+						    <tr style="text-align: center; align-items: center;">
 						      <th>#</th>
 						      <th>USERNAME</th>
 						      <th>EMAIL ID</th>
 						      <th>CAREER</th>
 							  <th>PHOTO</th>
-							  <th>STATUS</th>
+							  <th>BLOCK / UNBLOCK</th>
 							  <th>EDIT / DELETE</th>
 							  
 						    </tr>
@@ -55,21 +55,21 @@
 						      <td>{{userdata.career}}</td>
 							  <td><img style="height: 60px; width: 54px;" src="{{userdata.img.url}}" alt=""></td>
 							  <td><!-- Material checked -->
-								BLOCKED
-								<label class="switch">
-									<input type="checkbox" onclick="" checked>
-									<span class="slider round"></span>
-								  </label>
-								  ACTIVE
+								{% if userdata.status %}
+                                    <a href="{% url 'block_user' userdata.id %}" style="width: 80px;font-size: 12px;" class="btn btn-sm btn-danger">BLOCK</a>
+                                {% else %}
+                                    <a href="{% url 'unblock_user' userdata.id %}" style="width: 80px;font-size: 12px;"
+                                       class="btn btn-sm btn-warning">UNBLOCK</a>
+                                {% endif %}
 							</td>
 							<td>
 								<form class="" method="get" action="{% url 'edit_user' userdata.id %}">
 									
-									<input class="btn btn-primary" style="width: 80px;" type="submit" value="EDIT">
+									<input  class="btn btn-primary" style="width: 80px;font-size: 12px;" type="submit" value="EDIT">
 								</form>
 								<form class="mt-3" method="post" action="{% url 'delete_user' userdata.id %}">
 									{% csrf_token%}
-									<input class="btn btn-danger" type="submit" style="width: 80px;" value="DELETE">
+									<input class="btn btn-danger" type="submit" style="width: 80px;font-size: 12px;" value="DELETE">
 								</form>
 							</td>
 							
