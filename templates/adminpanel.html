@@ -67,9 +67,9 @@
 									
 									<input  class="btn btn-primary" style="width: 80px;font-size: 12px;" type="submit" value="EDIT">
 								</form>
-								<form class="mt-3" method="post" action="{% url 'delete_user' userdata.id %}">
+								<form class="mt-3" method="post" onsubmit="return submitForm(this);" action="{% url 'delete_user' userdata.id %}">
 									{% csrf_token%}
-									<input class="btn btn-danger" type="submit" style="width: 80px;font-size: 12px;" value="DELETE">
+									<input  class="btn btn-danger" type="submit" style="width: 80px;font-size: 12px;" value="DELETE">
 								</form>
 							</td>
 							
@@ -88,8 +88,26 @@
 			$('#example').DataTable();
 			} );
 	</script>
+	<script>
+		function submitForm(form) {
+			swal({
+				title: "Are you sure?",
+				text: "This userdata will be deleted permanently",
+				icon: "warning",
+				buttons: true,
+				dangerMode: true,
+			})
+			.then((isOkay) => {
+				if (isOkay) {
+					form.submit();
+				}
+			});
+			return false;
+		}
+	</script>
 	
 	
+	<script src="{% static 'js/sweetalert.min.js' %}"></script>
   <script src="{% static 'js/popper.js' %}"></script>
   <script src="{% static 'js/bootstrap.min.js' %}"></script>
   <script src="{% static 'js/main.js' %}"></script>

@@ -82,6 +82,8 @@ def edit_user(request,pk):
     if request.method=='POST':
         user=profile.objects.get(id=pk)
         user1=profile.objects.get(id=pk)
+        user2=User.objects.get(username=user.name)
+        
         user.name=request.POST['username']
         user.email=request.POST['email']
         user.career=request.POST['career']
