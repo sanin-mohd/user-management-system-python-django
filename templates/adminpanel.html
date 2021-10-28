@@ -11,6 +11,7 @@
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 	<link rel="stylesheet" href="{% static 'css/adminpanel.css' %}">
 	<script src="{% static 'js/jquery.min.js' %}"></script>
 
@@ -36,7 +37,7 @@
 						<table id="example"  class="table table-bordered  table-dark " style="align-content: center;align-items: center;justify-items: center; ">
 						  <thead>
 						    <tr style="text-align: center; align-items: center;">
-						      <th>#</th>
+						      <th>No</th>
 						      <th>USERNAME</th>
 						      <th>EMAIL ID</th>
 						      <th>CAREER</th>
@@ -63,6 +64,9 @@
                                 {% endif %}
 							</td>
 							<td>
+								<!-- <a href="{% url 'edit_user' userdata.id %}"  class="edit" title="Edit" data-toggle="tooltip"><i class="material-icons">&#xE254;</i></a>
+                            <a href="{% url 'delete_user' userdata.id %}" class="delete" title="Delete" data-toggle="tooltip"><i class="material-icons">&#xE872;</i></a>
+                         -->
 								<form class="" method="get" action="{% url 'edit_user' userdata.id %}">
 									
 									<input  class="btn btn-primary" style="width: 80px;font-size: 12px;" type="submit" value="EDIT">
@@ -83,6 +87,15 @@
 			</div>
 		</div>
 	</section>
+	<style>
+		a.edit {
+			color: #FFC107;
+		}
+		a.delete {
+			color: #E34724;
+		}
+		
+	</style>
 	<script>
 		$(document).ready(function() {
 			$('#example').DataTable();

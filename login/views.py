@@ -65,12 +65,13 @@ def login_page(request):
     return render(request,'login.html')
 @login_required(login_url='login')
 def home(request):
-    if request.user.is_authenticated:
+    if request.user.is_authenticated and profile.objects.get(name=request.user).status:
         username=request.user
         print(username)
         userdata=profile.objects.get(name=username)
         return render(request,'home.html',{'userdata':userdata})
     else:
+        auth.logout(request)
         return redirect('login')           
         
     
