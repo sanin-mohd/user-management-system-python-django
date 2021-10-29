@@ -19,7 +19,7 @@ def admin_login(request):
             return redirect('admin_login')
     else:
         return render(request,'admin.html')
-
+@login_required(login_url='admin_login')
 def admin_home(request):
     dbtable=profile.objects.all()
     if request.session.has_key('admin'):
@@ -33,8 +33,9 @@ def admin_logout(request):
         request.session.modified = True
         print("admin session deleted")
         return redirect('admin_home')
-
+@login_required(login_url='admin_login')
 def adduser(request):
+    
     if request.method=='POST':
         userdata=profile()
         userdata.name=request.POST['username']
@@ -67,7 +68,7 @@ def adduser(request):
         return redirect('admin_home')
     else:
         return render(request,'adduser.html')
-# @login_required(login_url='admin_login')
+@login_required(login_url='admin_login')
 def delete_user(request,pk):
     username=profile.objects.get(id=pk).name
     profile.objects.get(id=pk).delete()
@@ -77,7 +78,7 @@ def delete_user(request,pk):
     return redirect('admin_home')
     # for userdata in dbtable:
     #     if userdata.name==str(username):
-# @login_required(login_url='admin_login')
+@login_required(login_url='admin_login')
 def edit_user(request,pk):
     if request.method=='POST':
         user=profile.objects.get(id=pk)
@@ -121,7 +122,7 @@ def edit_user(request,pk):
         userdata=profile.objects.get(id=pk)
         return render(request,'edituser.html',{'userdata':userdata})
     
-
+@login_required(login_url='admin_login')
 def block_user(request,pk):
     userdata=profile.objects.get(id=pk)
     if userdata.status:
@@ -130,6 +131,7 @@ def block_user(request,pk):
         print("User status : Inactive")
         
     return redirect('admin_home')
+@login_required(login_url='admin_login')
 def unblock_user(request,pk):
     userdata=profile.objects.get(id=pk)
     if not userdata.status:
