@@ -117,5 +117,6 @@ def signup(request):
         return render(request,'signup.html')
 def logout(request):
     auth.logout(request)
+    print("logout")
     return redirect('login')
     
