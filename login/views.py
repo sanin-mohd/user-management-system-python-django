@@ -11,23 +11,11 @@ from django.contrib.auth.decorators import login_required
 
 
 dbtable=profile.objects.all()
-# Create your views here.
-# def login(request):
-#     if request.method=="POST":
-        
-#         email=request.POST["email"]
-#         password=request.POST["password"]
-#         for userdata in dbtable:
-#             if userdata.email==email and userdata.password==password:
-#                 return render(request,'home.html',{'userdata':userdata})
 
-#         return redirect('/')
-#     else:
-#         return render(request,'login.html')
 
 def login_page(request):
     
-    if request.user.is_authenticated:
+    if request.session.has_key('user')and profile.objects.get(name=request.session['user']).status:
         return redirect('home')
     if request.method=="POST":
         
@@ -38,40 +26,28 @@ def login_page(request):
         if user is not None:
             userdata=profile.objects.get(name=username)
             if userdata.status:
-                auth.login(request,user)
+                
+                
+                request.session['user']=user.username
                 print(user.username)
                 return redirect('home')
             else:
                 messages.info(request,"You are blocked by admin")
                 return redirect('/')
 
-            
-        
-            
-            # for userdata in dbtable:
-                
-            #     if userdata.name==username :
-            #         if not userdata.status:
-            #             messages.info(request,"You are blocked by admin")
-            #             return redirect('/')
-            #         else:
-            #             auth.login(request,user)
-            #             return render(request,'home.html',{'userdata':userdata})
-               
-
         else:
             messages.info(request,"Incorrect username or password")
             return redirect('/')
     return render(request,'login.html')
-@login_required(login_url='login')
+
 def home(request):
-    if request.user.is_authenticated and profile.objects.get(name=request.user).status:
-        username=request.user
+    if request.session.has_key('user') and profile.objects.get(name=request.session['user']).status:
+        username=request.session['user']
         print(username)
         userdata=profile.objects.get(name=username)
         return render(request,'home.html',{'userdata':userdata})
     else:
-        auth.logout(request)
+        
         return redirect('login')           
         
     
@@ -80,6 +56,8 @@ def home(request):
     
     
 def signup(request):
+    if request.session.has_key('user'):
+        return redirect('home')
     if request.method=='POST':
         userdata=profile()
         userdata.name=request.POST['username']
@@ -102,7 +80,8 @@ def signup(request):
             userdata.save()
             user=User.objects.create_user(username=userdata.name,password=userdata.password,email=userdata.email,is_active=1,is_staff=0)
             user.save()
-            auth.login(request,user)
+            
+            request.session['user']=userdata.name
             
             print("user created")
             return redirect('home')
@@ -116,7 +95,10 @@ def signup(request):
     else:
         return render(request,'signup.html')
 def logout(request):
-    auth.logout(request)
+    
+    del request.session['user']
+    
+    
     print("logout")
-    return redirect('login')
+    return redirect('home')
     
